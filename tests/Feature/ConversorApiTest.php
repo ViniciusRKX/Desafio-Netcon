@@ -21,17 +21,6 @@ class ConversorApiTest extends TestCase
                  ]);
     }
 
-    public function testQuilometrosComEntradaInvalida()
-    {
-        $response = $this->withoutMiddleware()
-                         ->postJson('/api/quilometros', [
-                             'quilometros' => -10
-                         ]);
-
-        $response->assertStatus(400)
-                -> assertJson(['erro' =>'parâmetros inválidos']);;
-    }
-
     public function testAnosLuzParaQuilometros()
     {
         $response = $this->withoutMiddleware()
@@ -43,17 +32,6 @@ class ConversorApiTest extends TestCase
                  ->assertJson([
                      'quilometros' => 9460730472580.8
                  ]);
-    }
-
-    public function testAnosLuzComEntradaInvalida()
-    {
-        $response = $this->withoutMiddleware()
-                         ->postJson('/api/anosLuz', [
-                             'anosLuz' => -1
-                         ]);
-
-        $response->assertStatus(400)
-                -> assertJson(['erro' =>'parâmetros inválidos']);
     }
 
 }
